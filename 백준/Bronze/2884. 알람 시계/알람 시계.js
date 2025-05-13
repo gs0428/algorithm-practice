@@ -1,0 +1,11 @@
+const fs = require("fs");
+const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
+const input = fs.readFileSync(filePath).toString().trim().split("\n");
+const [h, m] = input[0].split(" ").map(Number);
+let totalMinutes = 60 * h + m;
+totalMinutes -= 45;
+if (totalMinutes === 0) return console.log("0 0");
+if (totalMinutes < 0) totalMinutes += 1440;
+const hour = Math.floor(totalMinutes / 60);
+const minute = totalMinutes % 60;
+console.log(`${hour} ${minute}`);
