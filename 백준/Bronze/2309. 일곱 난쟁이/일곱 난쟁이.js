@@ -10,17 +10,13 @@ const totalDwarfs = dwarfs.length;
 const tempDwarfs = [];
 let ans = [];
 
-let flag = false;
-
 function comb(depth, start, sum) {
-  if (depth === MAX_DWARFS) {
+  if (depth === MAX_DWARFS || sum > 100) {
     if (sum === SUM_OF_TALL) {
       ans = [...tempDwarfs];
-      flag = true;
     }
     return;
   }
-  if (flag) return;
 
   for (let i = start; i < totalDwarfs; i++) {
     tempDwarfs[depth] = dwarfs[i];
