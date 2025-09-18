@@ -14,6 +14,7 @@ function solution(maps) {
             const [curX, curY, curCnt] = queue.shift();
             if(curX === M - 1 && curY === N - 1) {
                 answer = curCnt;
+                break;
             }
             
             if(curX < M - 1 && maps[curY][curX + 1] === 1 && !visited[curY][curX + 1]) {
