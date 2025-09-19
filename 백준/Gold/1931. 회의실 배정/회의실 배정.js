@@ -5,10 +5,7 @@ const input = fs.readFileSync(filePath).toString().trim().split("\n");
 input.shift();
 
 const meetings = input
-  .map((meeting) => {
-    const times = meeting.split(" ").map(Number);
-    return [...times, times[1] - times[0]];
-  })
+  .map((meeting) => meeting.split(" ").map(Number))
   .sort((a, b) => (a[1] === b[1] ? a[0] - b[0] : a[1] - b[1]));
 
 let lastEnd = 0;
