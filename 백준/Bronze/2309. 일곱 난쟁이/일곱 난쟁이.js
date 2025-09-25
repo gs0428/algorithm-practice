@@ -3,27 +3,25 @@ const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 const input = fs.readFileSync(filePath).toString().trim().split("\n");
 const dwarfs = input.map(Number);
 
-const MAX_DWARFS = 7;
-const SUM_OF_TALL = 100;
-const totalDwarfs = dwarfs.length;
+const N = dwarfs.length;
+const r = 7;
 
-const tempDwarfs = [];
-let ans = [];
+const numbers = [];
 
-function comb(depth, start, sum) {
-  if (depth === MAX_DWARFS || sum > 100) {
-    if (sum === SUM_OF_TALL) {
-      ans = [...tempDwarfs];
+function comb(depth, start) {
+  if (depth === r) {
+    const sum = numbers.reduce((acc, cur) => acc + cur, 0);
+    if (sum === 100) {
+      console.log(numbers.sort((a, b) => a - b).join("\n"));
+      process.exit(0);
     }
     return;
   }
 
-  for (let i = start; i < totalDwarfs; i++) {
-    tempDwarfs[depth] = dwarfs[i];
-    comb(depth + 1, i + 1, sum + dwarfs[i]);
+  for (let i = start; i < N; i++) {
+    numbers[depth] = dwarfs[i];
+    comb(depth + 1, i + 1);
   }
 }
 
-comb(0, 0, 0);
-
-console.log(ans.sort((a, b) => a - b).join("\n"));
+comb(0, 0);
