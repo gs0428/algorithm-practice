@@ -31,8 +31,9 @@ function bfs(num) {
   bfsVisited[num] = true;
   bfsAns.push(num);
   const queue = arr[num].sort((a, b) => a - b);
-  while (queue.length > 0) {
-    const item = queue.shift();
+  let head = 0;
+  while (head < queue.length) {
+    const item = queue[head++];
     if (bfsVisited[item]) continue;
     bfsVisited[item] = true;
     bfsAns.push(item);
